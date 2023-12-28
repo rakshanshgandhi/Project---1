@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0ECE5;
+}
+.container {
+    margin-top: 50px;
+    display: flex;
+    padding: 40px;
+    flex-direction: column;
+    color: #F0ECE5;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #161A30;
+    align-items: center;
+    gap: 10px;
+    background-color: #31304D;
+    width: 300px;
+}
+button {
+    width: 100px;
+    background-color: white;
+    padding: 2px;
+    border-radius: 5px;
+}

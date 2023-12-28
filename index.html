@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Verification</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #F0ECE5;
+    }
+    .container {
+        margin-top: 50px;
+        display: flex;
+        padding: 40px;
+        flex-direction: column;
+        color: #F0ECE5;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px #161A30;
+        align-items: center;
+        gap: 10px;
+        background-color: #31304D;
+        width: 300px;
+    }
+    button {
+        width: 100px;
+        background-color: white;
+        padding: 2px;
+        border-radius: 5px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <h2>Verify Your Number</h2>
+    <label for="phoneNumber">Phone Number : </label>
+    <input type="text" id="phoneNumber" name="phoneNumber" required />
+    <label>Enter OTP : </label>
+    <input type="text" id="otp" name="OTP" required />
+    <button id="request" type="button" onclick="sendOTP()">Request OTP</button>
+    <button id="verify" type="button" onclick="verifyOTP()">Verify OTP</button>
+    <p id="paragraph"></p>
+    </div>
+
+    <script>
+      function sendOTP() {
+        const phoneNumber = document.getElementById("phoneNumber").value;
+
+        if (!phoneNumber) {
+          alert("Please enter a phone number");
+          return;
+        }
+        fetch("/sendOTP", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ phoneNumber })
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            alert(data);
+          })
+          .catch((error) => console.error(error));
+      }
+
+      function verifyOTP() {
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const otpValue = document.getElementById("otp").value;
+
+        fetch("/verifyOTP", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ phoneNumber, OTP: otpValue }),
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("paragraph").innerText = data;
+          })
+          .catch((error) => console.error(error));
+      }
+    </script>
+  </body>
+</html>
