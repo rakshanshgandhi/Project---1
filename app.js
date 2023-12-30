@@ -8,9 +8,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 3000;
 
-const accSid = "AC490f596656fc74294cb14e61006e1345";
-const authToken = "d5d1513fec06144921398e209afb6157";
-const twilioPhone = "+18594497292";
+const accSid = "";
+const authToken = "";
+const twilioPhone = "";
 
 const client = new twilio(accSid, authToken);
 
